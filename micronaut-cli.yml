@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: bike.store
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
