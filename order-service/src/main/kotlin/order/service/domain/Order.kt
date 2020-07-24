@@ -1,10 +1,10 @@
-package order.service.model
+package order.service.domain
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull
 
-@Entity(name = "order")
-@Table(name = "order")
+@Entity(name = "product_order")
+@Table(name = "product_order")
 data class Order(
 
         @Id
@@ -17,19 +17,17 @@ data class Order(
 
         @NotNull
         @Column(name = "amount", nullable = false)
-        val amount: Double = 0.00
-) {
-    @OneToOne(
-            mappedBy = "order",
-            cascade = [CascadeType.ALL],
-            orphanRemoval = true
-    )
-    @JoinColumn(
-            name = "customer_id",
-            referencedColumnName = "id"
-    )
-    var customer: Customer? = null
+        val amount: Double = 0.00,
 
+        @ManyToOne(
+                optional = false
+        )
+        @JoinColumn(
+                name = "customer_id",
+                referencedColumnName = "id"
+        )
+        var customer: Customer? = null
+) {
     override fun toString(): String {
         return """
                 order {

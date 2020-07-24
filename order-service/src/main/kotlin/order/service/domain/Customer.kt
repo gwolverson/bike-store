@@ -1,4 +1,4 @@
-package order.service.model
+package order.service.domain
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -13,15 +13,20 @@ data class Customer(
 
         @NotNull
         @Column(name = "name", nullable = false)
-        val name: String = "",
-
-        @OneToOne
-        val order: Order? = null
+        val name: String = ""
 ) {
+    @OneToMany(
+            mappedBy = "customer",
+            targetEntity = Order::class,
+            fetch = FetchType.EAGER
+    )
+    val order: MutableList<Order>? = mutableListOf()
+    
     @OneToOne(
             mappedBy = "customer",
             cascade = [CascadeType.ALL],
-            orphanRemoval = true
+            orphanRemoval = true,
+            optional = false
     )
     @JoinColumn(
             name = "address_id",

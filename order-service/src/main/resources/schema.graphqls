@@ -1,72 +1,28 @@
 type Query {
-    bikes: [Bike!]!
-    bikesByCategory(category: Category!): [Bike!]!
-    bikeById(id: Int!): Bike
+    getOrderById(id: Int!): Order!
 }
 
 type Mutation {
-    createBike(make: String!, model: String!, category: Category!, description: String!): Bike!
-    createBikeReview(id: Int!, review: ReviewInput!): Review!
-    createUser(user: UserInput!): User!
-    deleteBikeById(id: Int): Boolean
+    createOrder(bikeId: Int!, amount: Float!, customerId: Int!): Order!
 }
 
-type Bike {
+type Order {
+    id: Int
+    bikeId: Int!
+    amount: Float!
+    customer: Customer!
+}
+
+type Customer {
     id: Int!
-    make: String!
-    model: String!
-    category: Category!
-    description: String!
-    price: Float!
-    reviews: [Review]
-    specification: Specification
+    name: String!
+    address: Address!
 }
 
-type Specification {
-    id: Int!,
-    groupset: String!,
-    wheelset: String!,
-    tyres: String!,
-    frameset: String!,
-    brakes: String!
-}
-
-input SpecificationInput {
-    groupset: String!,
-    wheelset: String!,
-    tyres: String!,
-    frameset: String!,
-    brakes: String!
-}
-
-type Review {
-    id: Int!,
-    user: User!
-    rating: Int!
-    text: String!
-}
-
-input ReviewInput {
-    rating: Int!
-    text: String!
-    userId: Int!
-}
-
-type User {
-    id: Int!,
-    firstName: String!
-    lastName: String!
-    email: String!
-}
-
-input UserInput {
-    firstName: String!
-    lastName: String!
-    email: String!
-}
-
-enum Category {
-    ROAD,
-    MTB,
-    GRAVEL
+type Address {
+    id: Int!
+    addressLine1: String!
+    addressLine2: String!
+    townCity: String!
+    postcode: String! 
 }

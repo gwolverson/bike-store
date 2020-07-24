@@ -1,10 +1,10 @@
 package order.service.repository
 
-import order.service.domain.Customer
+import order.service.domain.Address
 
-interface CustomerRepository {
+interface AddressRepository {
 
-    fun findById(id: Int): Customer?
-    
-    fun save(customer: Customer)
+    fun findById(id: Long): Address?
+
+    fun save(address: Address)
 }

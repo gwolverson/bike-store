@@ -1,4 +1,4 @@
-package order.service.model
+package order.service.domain
 
 import javax.persistence.*
 import javax.validation.constraints.NotNull

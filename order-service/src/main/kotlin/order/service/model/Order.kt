@@ -1,4 +1,8 @@
-package order.service.domain
+package order.service.model
 
-class Order {
-}
+data class Order (
+        val id: Int?,
+        val bikeId: Int?,
+        val amount: Double?,
+        val customer: Customer?
+)

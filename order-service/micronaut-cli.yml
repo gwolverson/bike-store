@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: order.service
+testFramework: kotlintest
+sourceLanguage: kotlin
+buildTool: gradle
+features: [app-name, docker, file-watch, file-watch-osx, gradle, http-client, kotlin, kotlin-application, kotlintest, logback, netty-server, readme, shade, yaml]
