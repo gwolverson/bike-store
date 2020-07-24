@@ -1,0 +1,72 @@
+type Query {
+    bikes: [Bike!]!
+    bikesByCategory(category: Category!): [Bike!]!
+    bikeById(id: Int!): Bike
+}
+
+type Mutation {
+    createBike(make: String!, model: String!, category: Category!, description: String!): Bike!
+    createBikeReview(id: Int!, review: ReviewInput!): Review!
+    createUser(user: UserInput!): User!
+    deleteBikeById(id: Int): Boolean
+}
+
+type Bike {
+    id: Int!
+    make: String!
+    model: String!
+    category: Category!
+    description: String!
+    price: Float!
+    reviews: [Review]
+    specification: Specification
+}
+
+type Specification {
+    id: Int!,
+    groupset: String!,
+    wheelset: String!,
+    tyres: String!,
+    frameset: String!,
+    brakes: String!
+}
+
+input SpecificationInput {
+    groupset: String!,
+    wheelset: String!,
+    tyres: String!,
+    frameset: String!,
+    brakes: String!
+}
+
+type Review {
+    id: Int!,
+    user: User!
+    rating: Int!
+    text: String!
+}
+
+input ReviewInput {
+    rating: Int!
+    text: String!
+    userId: Int!
+}
+
+type User {
+    id: Int!,
+    firstName: String!
+    lastName: String!
+    email: String!
+}
+
+input UserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+}
+
+enum Category {
+    ROAD,
+    MTB,
+    GRAVEL
+}
